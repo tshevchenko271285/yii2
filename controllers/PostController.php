@@ -21,7 +21,6 @@ class PostController extends AppController
 
 		if( Yii::$app->request->isAjax ) { // Если пришел AJAX запрос
 			return json_encode( Yii::$app->request->post() ); // Вернём глобальный массив $_POST
-			//die();
 		}
 
 		$arr = [1,2,3];
@@ -32,6 +31,11 @@ class PostController extends AppController
 	public function actionShow(){
 
 		//$this->layout = 'basic'; // Set Layout for the Action
+		
+		$this->view->title = 'Одна статья!'; // Определение Title
+
+		$this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Keywords Text']);// Определение метатега
+		$this->view->registerMetaTag(['name' => 'description', 'content' => 'Description Text']);// Определение метатега
 
 		return $this->render('show');
 	}

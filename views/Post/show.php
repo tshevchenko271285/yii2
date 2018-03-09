@@ -1,3 +1,11 @@
+<?php 
+	// $this->title = 'Одна статья';
+?>
+
+<?php $this->beginBlock('blockName'); ?>
+	<h1>Hello !</h1>
+<?php $this->endBlock('blockName'); ?>
+
 <h1>Show Action</h1>
 <button id="btn" class="btn btn-success">Click me...</button>
 <?php 

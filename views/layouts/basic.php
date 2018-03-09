@@ -14,8 +14,11 @@ AppAsset::register($this);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Подключение CSRF защиты -->
 	<? echo Html::csrfMetaTags() ?>
-	<title>Document</title>
+	
+	<title><?= Html::encode( $this->title ) ?></title>
 	<?php $this->head() ?>
 </head>
 <body>
@@ -33,12 +36,12 @@ AppAsset::register($this);
 				<li class="nav-item">
 					<?php echo Html::a('Статья', ['post/show'], ['class' => 'nav-link'] ) ?>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link disabled" href="#">Disabled</a>
-				</li> -->
 			</ul>
 
-<?php echo $content ?>
+			<?php if( isset($this->blocks['blockName']) ) {
+				echo $this->blocks['blockName'];
+			} ?>
+			<?php echo $content ?>
 
 		</div>
 	</div>
