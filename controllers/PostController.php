@@ -8,11 +8,20 @@ class PostController extends AppController
 {
 	public $layout = 'basic'; // Set Layout for the Controller
 
+	public function beforeAction($action){
+		// При переходе на Action Index
+		if ( $action->id == 'index' ) {
+			// Oтключаем Csrf защиту
+			$this->enableCsrfValidation = false;
+		}
+		return parent::beforeAction($action);
+	}
+
 	public function actionIndex(){
 
-
-		if( Yii::$app->request->isAjax ) {
-			return json_encode($_GET);
+		if( Yii::$app->request->isAjax ) { // Если пришел AJAX запрос
+			return json_encode( Yii::$app->request->post() ); // Вернём глобальный массив $_POST
+			//die();
 		}
 
 		$arr = [1,2,3];

@@ -11,7 +11,7 @@ $code = <<<JS
 		$.ajax({
 			url: 'index.php?r=post/index',
 			data: { test: '123' },
-			type: 'GET',
+			type: 'POST',
 			success: function(res){
 				console.log(res);
 			},
