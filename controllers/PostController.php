@@ -21,29 +21,48 @@ class PostController extends AppController
 	}
 */
 	public function actionIndex(){
-
-		if( Yii::$app->request->isAjax ) { // Если пришел AJAX запрос
-			return json_encode( Yii::$app->request->post() ); // Вернём глобальный массив $_POST
+		// Если пришел AJAX запрос
+		if( Yii::$app->request->isAjax ) { 
+			// Вернём глобальный массив $_POST
+			return json_encode( Yii::$app->request->post() ); 
+		}
+		$tt = 'Потому что я так хочу!';
+		$model = new TestForm();
+		// Если данные пришли методом POST
+		if ($model->load( Yii::$app->request->post() ) ) {
+			// Если валидация прошла успешно
+			if ( $model->validate() ) {
+				// Записываем флеш данные в сессию
+				Yii::$app->session->setFlash('success', 'Данные приняты');
+				// Очищаем форму
+				return $this->refresh();
+			} else {
+				// Записываем флеш данные в сессию
+				Yii::$app->session->setFlash('error', 'Ошибка!!!');
+			}
 		}
 
-		$model = new TestForm();
+
 		$this->view->title = 'Все статьи'; // Определение Title
 		return $this->render( 'test', compact( 'model' ) );
-	/*	// Отправка Данных в View
-		$arr = [1,2,3];
-		return $this->render('test', compact('arr') );
-		return $this->render('test', ['arr' => $arr, ] );
-	*/
+		
+		// Отправка Данных в View
+		// $arr = [1,2,3];
+		// return $this->render('test', compact('arr') );
+		// return $this->render('test', ['arr' => $arr, ] );
+	
 	}
 
 	public function actionShow(){
 
-		//$this->layout = 'basic'; // Установка layaut для этого action
+		//$this->layout = 'basic'; // Установка layaut для данного action
 		
-		$this->view->title = 'Одна статья!'; // Определение Title
+		// Определение Title
+		$this->view->title = 'Одна статья!'; 
 
-		$this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Keywords Text']);// Определение метатега
-		$this->view->registerMetaTag(['name' => 'description', 'content' => 'Description Text']);// Определение метатега
+		// Определение метатегов
+		$this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Keywords Text']);
+		$this->view->registerMetaTag(['name' => 'description', 'content' => 'Description Text']);
 
 		return $this->render('show');
 	}
