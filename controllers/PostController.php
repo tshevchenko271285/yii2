@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Category;
 use app\models\TestForm;
 
 class PostController extends AppController
@@ -26,7 +27,6 @@ class PostController extends AppController
 			// Вернём глобальный массив $_POST
 			return json_encode( Yii::$app->request->post() ); 
 		}
-		$tt = 'Потому что я так хочу!';
 		$model = new TestForm();
 		// Если данные пришли методом POST
 		if ($model->load( Yii::$app->request->post() ) ) {
@@ -53,7 +53,7 @@ class PostController extends AppController
 	
 	}
 
-	public function actionShow(){
+    public function actionShow(){
 
 		//$this->layout = 'basic'; // Установка layaut для данного action
 		
@@ -64,6 +64,9 @@ class PostController extends AppController
 		$this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Keywords Text']);
 		$this->view->registerMetaTag(['name' => 'description', 'content' => 'Description Text']);
 
-		return $this->render('show');
+        $cats = Category::find()->where(['parent' => 692] )->all();
+
+		return $this->render('show', compact('cats'));
+
 	}
 }

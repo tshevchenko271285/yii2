@@ -6,6 +6,8 @@
 	<h1>Hello !</h1>
 <?php $this->endBlock('blockName'); ?>
 
+<?php debug( $cats ); ?>
+
 <h1>Show Action</h1>
 <button id="btn" class="btn btn-success">Click me...</button>
 <?php 
@@ -29,7 +31,6 @@ $code = <<<JS
 		})
 	})
 JS;
-
 $this->registerJs( $code, \yii\web\View::POS_LOAD );
 
 // Подключение CSS файла 
