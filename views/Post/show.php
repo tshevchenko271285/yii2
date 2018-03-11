@@ -7,6 +7,11 @@
 <?php $this->endBlock('blockName'); ?>
 
 <?php debug( $cats ); ?>
+<?php
+/*foreach ($cats as $cat) {
+    echo $cat->title .'<br>';
+}*/
+?>
 
 <h1>Show Action</h1>
 <button id="btn" class="btn btn-success">Click me...</button>

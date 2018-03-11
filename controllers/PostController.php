@@ -1,5 +1,5 @@
 <?php 
-// Test commit in PhpStorm
+
 namespace app\controllers;
 
 use Yii;
@@ -53,6 +53,9 @@ class PostController extends AppController
 	
 	}
 
+    /**
+     * @return string
+     */
     public function actionShow(){
 
 		//$this->layout = 'basic'; // Установка layaut для данного action
@@ -64,7 +67,34 @@ class PostController extends AppController
 		$this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Keywords Text']);
 		$this->view->registerMetaTag(['name' => 'description', 'content' => 'Description Text']);
 
-        $cats = Category::find()->where(['parent' => 692] )->all();
+		// Выборка всех данных
+//        $cats = Category::find()->all();
+//        $cats = Category::find()->orderBy( ['id' => SORT_DESC] )->all();
+            // Метод " ->asArray() " возвращает записи из таблице в виде многомерного массива а не объектов
+//        $cats = Category::find()->asArray()->all();
+            // Метод " ->where " принимает строку
+//        $cats = Category::find()->asArray()->where( 'parent=691' )->all();
+            // Метод " ->where " принимает массив [ 'поле' => 'значение' ]
+//        $cats = Category::find()->asArray()->where( [ 'parent' => 691 ] )->all();
+            // Метод " ->where " принимает массив [ 'оператор', 'имя поля', 'значение' ]
+//        $cats = Category::find()->asArray()->where( [ 'parent' => 691 ] )->all();
+//        $cats = Category::find()->asArray()->where( ['like', 'title', 'pp' ] )->all();
+            // Метод ->limit(1) Выбает одну запись из таблицы
+//        $cats = Category::find()->asArray()->where('id=691')->limit(1)->all();
+            // Метод ->one() Выбает все записи ! Но отображает только одну в одномерном массиве
+//        $cats = Category::find()->asArray()->where('id=691')->one();
+//        $cats = Category::find()->asArray()->count();
+//        $cats = Category::findOne(['id' => 691]);
+//        $cats = Category::findAll(['parent' => 691]);
+            // Использование собственного SQL запроса
+//        $sql = "SELECT * FROM categories WHERE title LIKE '%pp%'";
+//        $cats = Category::findBySql($sql)->all();
+            // Использование собственного SQL запроса с передачей параметров, параметры экранируются самостоятельно
+//        $sql = "SELECT * FROM categories WHERE title LIKE :search";
+//        $cats = Category::findBySql($sql, [':search' => '%pp%'])->all();
+
+
+
 
 		return $this->render('show', compact('cats'));
 
