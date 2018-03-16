@@ -6,11 +6,27 @@
 	<h1>Hello !</h1>
 <?php $this->endBlock('blockName'); ?>
 
-<?php debug( $cats ); ?>
+<?php //debug( $cats ); ?>
+
+<!--Отложенная загрузка-->
+<?php //echo count($cats->products)  ?>
+<?php //debug( $cats ); ?>
+
+    <!--Жадная загрузка-->
+<?php //debug( $cats ); ?>
+
 <?php
-/*foreach ($cats as $cat) {
-    echo $cat->title .'<br>';
-}*/
+foreach ($cats as $cat) {
+    echo '<ul>';
+        echo '<li>' . $cat->title . '</li>';
+        $products = $cat->products;
+        foreach ($products as $product) {
+            echo '<ul>';
+                echo '<li>' . $product->title .'</li>';
+            echo '</ul>';
+        }
+    echo '</ul>';
+}
 ?>
 
 <h1>Show Action</h1>
