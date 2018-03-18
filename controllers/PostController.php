@@ -27,11 +27,33 @@ class PostController extends AppController
 			// Вернём глобальный массив $_POST
 			return json_encode( Yii::$app->request->post() ); 
 		}
+        // Обновление данных
+//		$post = TestForm::findOne(3);
+//        $post->email = '22@2.com';
+//        $post->save();
+
+        // Удаление одной записи
+//        $post = TestForm::findOne(2);
+//        $post->delete();
+
+        // Удаление нескольких записей соотсетствующих условию
+//        TestForm::deleteAll( ['>', 'id', 3] );
+        // Если вызвать пустым удалит все записи
+//        TestForm::deleteAll();
+
 		$model = new TestForm();
+
+		// Ручная загрузка в базу данных
+//		$model->name = 'Автор Сообщения';
+//		$model->email = 11;
+//		$model->text = 'Текст сообщения';
+//		$model->save();
+
+
 		// Если данные пришли методом POST
 		if ($model->load( Yii::$app->request->post() ) ) {
-			// Если валидация прошла успешно
-			if ( $model->validate() ) {
+			// Если данные успешно сохранены
+			if ( $model->save() ) {
 				// Записываем флеш данные в сессию
 				Yii::$app->session->setFlash('success', 'Данные приняты');
 				// Очищаем форму

@@ -11,6 +11,7 @@ class AppController extends Controller {
 
 	public function debug($arr){
 		echo '<pre>' . var_dump($arr, true) . '</pre>';
+		die;
 	}
 
 }
