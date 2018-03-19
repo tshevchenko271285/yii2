@@ -28,7 +28,7 @@ AppAsset::register($this);
 		<div class="container">
 			<ul class="nav nav-pills">
 				<li class="nav-item">
-					<?php echo Html::a('Главная', '/web/', ['class' => 'nav-link'] ); ?>
+					<?php echo Html::a('Главная', '/', ['class' => 'nav-link'] ); ?>
 				</li>
 				<li class="nav-item">
 					<?php echo Html::a('Статьи', ['post/index'], ['class' => 'nav-link'] ) ?>

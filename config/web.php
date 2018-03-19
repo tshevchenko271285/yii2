@@ -17,6 +17,8 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'FAsflMc-pvxb9-ZiSyj1N15FedDqzjio',
+            // Настройка ЧПУ Урок 21
+            'baseUrl'=> '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -45,14 +47,24 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
+        // Настройка ЧПУ Урок 21
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'enablePrettyUrl' => true, // Включает ЧПУ
+            'showScriptName' => false, // Паказывает имя скрипта " index.php?r= "
+            'suffix' => '.html', // Добавляет суффикс в конец адреса
             'rules' => [
-            ],
+                [
+                  'pattern' => '',
+                  'route' => 'site/index',
+                  'suffix' => ''
+                ],
+                '<action:(about|contact|login)>' => 'site/<action>',
+                // Можно использовать регулярное выражение
+//                '<action:\w+>' => 'site/<action>',
+            ]
         ],
-        */
+
     ],
     'params' => $params,
 ];
