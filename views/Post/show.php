@@ -1,10 +1,17 @@
 <?php 
 	// $this->title = 'Одна статья';
+use app\widgets\MyWidget;
 ?>
 
 <?php $this->beginBlock('blockName'); ?>
-	<h1>Hello !</h1>
+	<h1>Заголовок страницы</h1>
 <?php $this->endBlock('blockName'); ?>
+
+<?php //echo MyWidget::widget( ['name'=>'Вася'] ); ?>
+
+<?php MyWidget::begin()?>
+    <h1>привет мир!!!</h1>
+<?php MyWidget::end()?>
 
 <?php //debug( $cats ); ?>
 
@@ -16,7 +23,7 @@
 <?php //debug( $cats ); ?>
 
 <?php
-foreach ($cats as $cat) {
+/*foreach ($cats as $cat) {
     echo '<ul>';
         echo '<li>' . $cat->title . '</li>';
         $products = $cat->products;
@@ -26,12 +33,13 @@ foreach ($cats as $cat) {
             echo '</ul>';
         }
     echo '</ul>';
-}
+}*/
 ?>
 
 <h1>Show Action</h1>
 <button id="btn" class="btn btn-success">Click me...</button>
-<?php 
+
+<?php
 // 	Подключение скрипта в шаблоне / 
 //	'depends' - Зависимости, класс взят с app\assets\AppAsset.php 
 $this->registerJsFile('@web/js/scripts.js', ['depends' => 'yii\web\YiiAsset']); 
