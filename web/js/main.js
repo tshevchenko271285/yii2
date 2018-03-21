@@ -28,3 +28,9 @@ $(document).ready(function(){
 		});
 	});
 });
+
+$(function(){
+    $('.catalog').dcAccordion({
+		speed: 300,
+	});
+});
