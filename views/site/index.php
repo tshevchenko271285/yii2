@@ -75,6 +75,7 @@ $this->title = 'My First Develop on Yii2, make shop';
             <div class="col-sm-3">
                 <div class="left-sidebar">
                     <h2>Category</h2>
+                    <?= \app\widgets\MenuWidget::widget( [ 'tpl' => 'select' ] ); ?>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -123,7 +124,6 @@ $this->title = 'My First Develop on Yii2, make shop';
                                 </div>
                             </div>
                         </div>
-
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
