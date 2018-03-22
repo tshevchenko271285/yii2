@@ -21,7 +21,6 @@ class MenuWidget extends Widget {
 	}
 
 	public function run(){
-
 		// Получаем данные из Кэша
 		$menu = Yii::$app->cache->get('menu');
 		if($menu) return $menu;
@@ -55,6 +54,7 @@ class MenuWidget extends Widget {
 		}
 		return $str;
 	}
+
 	protected function catToTemplate($category){
 		ob_start();
 		include __DIR__ . '/menu_tpl/' . $this->tpl;
