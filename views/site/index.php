@@ -1,8 +1,6 @@
 <?php
 
 /* @var $this yii\web\View */
-
-$this->title = 'My First Develop on Yii2, make shop';
 ?>
 <section id="slider"><!--slider-->
     <div class="container">

@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-$this->title = 'My First Develop on Yii2, make shop';
 ?>
 <section id="slider"><!--slider-->
     <div class="container">
