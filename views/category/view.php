@@ -1,6 +1,7 @@
 <?php
     use yii\helpers\Html;
     use yii\widgets\LinkPager;
+    use yii\helpers\Url;
 ?>
 <section id="advertisement">
 	<div class="container">
@@ -55,25 +56,17 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                       <!-- <img src="/images/shop/product12.jpg" alt="" />-->
                                         <?= Html::img("@web/images/product/{$product->img}", ['alt' => $product->name])?>
                                         <h2>$<?= $product->price ?></h2>
-                                        <p><?= $product->name ?></p>
+                                        <p><a href="<?= Url::to(['product/view', 'id' => $product->id ]) ?>"><?= $product->name ?></a></p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-                                    <!--<div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$<?/*= $product->price */?></h2>
-                                            <p><?/*= $product->name */?></p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                        </div>
-                                    </div>-->
                                     <?php if( $product->new === '1' ) : ?>
-                                        <?= Html::img('@web/images/home/new.png', ['alt' => 'Новинка', 'class' => 'new']); ?>
-                                    <?php endif; ?>
-                                    <?php if( $product->sale === '1' ) : ?>
-                                        <?= Html::img('@web/images/home/sale.png', ['alt' => 'Новинка', 'class' => 'new']); ?>
-                                    <?php endif; ?>
+										<?= Html::img('@web/images/home/new.png', ['alt' => 'Новинка', 'class' => 'new']); ?>
+									<?php endif; ?>
+									<?php if( $product->sale === '1' ) : ?>
+										<?= Html::img('@web/images/home/sale.png', ['alt' => 'Новинка', 'class' => 'new']); ?>
+									<?php endif; ?>
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
@@ -86,10 +79,8 @@
 					<?php endforeach; ?>
                     <div class="clearfix"></div>
                     <?php
-                    // отображаем ссылки на страницы
-                    echo LinkPager::widget([
-                        'pagination' => $pages,
-                    ]);
+                        // отображаем ссылки на страницы
+                        echo LinkPager::widget(['pagination' => $pages]);
                     ?>
 				</div><!--features_items-->
 				<?php else : ?>
