@@ -1,5 +1,6 @@
 <?php
     use yii\helpers\Html;
+    use yii\widgets\LinkPager;
 ?>
 <section id="advertisement">
 	<div class="container">
@@ -83,12 +84,13 @@
                             </div>
                         </div>
 					<?php endforeach; ?>
-					<!--<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>-->
+                    <div class="clearfix"></div>
+                    <?php
+                    // отображаем ссылки на страницы
+                    echo LinkPager::widget([
+                        'pagination' => $pages,
+                    ]);
+                    ?>
 				</div><!--features_items-->
 				<?php else : ?>
 					<h2>Здесь товаров пока нет...</h2>
