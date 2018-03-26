@@ -87,10 +87,7 @@ use yii\helpers\Url;
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
                             <?php if( $product->new === '1' ) : ?>
-                                <?= Html::img('@web/images/home/new.png', ['alt' => 'Новинка', 'class' => 'newrrival']); ?>
-                            <?php endif; ?>
-                            <?php if( $product->sale === '1' ) : ?>
-                                <?= Html::img('@web/images/home/sale.png', ['alt' => 'Новинка', 'class' => 'newrrival']); ?>
+                                <?= Html::img('@web/images/product-details/new.jpg', ['alt' => 'Новинка', 'class' => 'newarrival']); ?>
                             <?php endif; ?>
                             <h2><?= $product->name ?></h2>
                             <p>Web ID: <?= $product->id ?></p>
@@ -112,7 +109,8 @@ use yii\helpers\Url;
                     </div>
                 </div><!--/product-details-->
 
-                <div class="category-tab shop-details-tab"><!--category-tab-->
+                <!--category-tab-->
+                <!--<div class="category-tab shop-details-tab">
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
                             <li><a href="#details" data-toggle="tab">Details</a></li>
@@ -300,89 +298,32 @@ use yii\helpers\Url;
                         </div>
 
                     </div>
-                </div><!--/category-tab-->
+                </div>--><!--/category-tab-->
 
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">recommended items</h2>
-
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="item active">
+                            <? $i = 0; $count = count($hits); foreach ($hits as $hit): ?>
+                                <? if( $i % 3 == 0 ) : ?>
+                                    <div class="item <?php if( $i == 0 ) echo 'active'; ?>">
+                                <?endif;?>
                                 <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="/images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
+                                                <?= Html::img("@web/images/product/{$hit->img}", ['alt'=>$hit->name]) ?>
+                                                <h2>$<?= $hit->price ?></h2>
+                                                <p><a href="<?= Url::to([ "product/view", 'id'=>$hit->id ])?>"><?= $hit->name ?></a></p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <?php $i++; if( $i % 3 == 0 || $i == $count ) : ?>
                             </div>
-                            <div class="item">
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <? endif ?>
+                        <? endforeach; ?>
                         </div>
                         <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                             <i class="fa fa-angle-left"></i>
