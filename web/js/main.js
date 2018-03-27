@@ -34,3 +34,28 @@ $(function(){
 		speed: 300,
 	});
 });
+
+$(function(){
+
+	$('.add-to-cart').on('click', function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		console.log(id);
+		$.ajax({
+			url: '/cart/add',
+			data: { id : id },
+			type: 'GET',
+			success: function(res){
+				if( !res  ) alert('Ошибка!');
+				console.log(res);
+				// showCart();
+			},
+			error: function(err){
+				console.warn(err)
+				// alert('Error!');
+			}
+		});
+	});
+
+});
+
