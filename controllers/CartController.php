@@ -15,13 +15,13 @@ class CartController extends AppController {
         $product = Product::findOne($id);
         if( empty( $product ) ) echo false;
         $session = Yii::$app->session;
+//        $session->destroy();
         $session->open();
         $cart = new Cart();
         $cart->addToCart($product);
 
-        debug($session['cart']);
-        debug($session['cart.qty']);
-        debug($session['cart.sum']);
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
     }
 
 }
