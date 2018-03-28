@@ -31,7 +31,7 @@ use yii\helpers\Html;
                         <?php if( !$item['name'] ) continue; ?>
                             <tr>
                                 <td class="cart_product">
-                                    <a href="<?= Url::to(['product/view', 'id' => $key ])?>">
+                                    <a href="<?= Url::to(['product/view', 'id' => $key])?>">
                                         <? $options = ['style' => ['width' => '150px'], 'alt' =>  $item['name'], ]; ?>
                                         <?= Html::img("@web/images/product/{$item['img']}", $options); ?>
                                     </a>
@@ -45,9 +45,9 @@ use yii\helpers\Html;
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
+                                        <a data-id="<?= $key ?>" class="cart_quantity_up" href=""> + </a>
                                         <input class="cart_quantity_input" type="text" name="quantity" value="<?= $item['qty'] ?>" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
+                                        <a data-id="<?= $key ?>" class="cart_quantity_down" href=""> - </a>
                                     </div>
                                 </td>
                                 <td class="cart_total">

@@ -15,7 +15,6 @@ class CartController extends AppController {
         $product = Product::findOne($id);
         if( empty( $product ) ) echo false;
         $session = Yii::$app->session;
-//        $session->destroy();
         $session->open();
         $cart = new Cart();
         $cart->addToCart($product);
@@ -47,6 +46,33 @@ class CartController extends AppController {
 
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionIncItem(){
+        $id = Yii::$app->request->get('id');
+
+        $session = Yii::$app->session;
+        $session->open();
+
+        $cart = new Cart();
+        $cart->incProduct($id);
+
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionDecItem(){
+        $id = Yii::$app->request->get('id');
+
+        $session = Yii::$app->session;
+        $session->open();
+
+        $cart = new Cart();
+        $cart->decProduct($id);
+
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+
     }
 
     public function actionShow() {

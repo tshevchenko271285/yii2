@@ -54,6 +54,45 @@ function showCart(cart){
     $('#cart').modal();
 }
 
+$('#cart .modal-body').on('click', '.cart_quantity_up', function(e){
+    e.preventDefault();
+    incItem($(e.target).data('id'))
+});
+
+$('#cart .modal-body').on('click', '.cart_quantity_down', function(e){
+    e.preventDefault();
+    decItem($(e.target).data('id'))
+});
+
+function incItem(id){
+    $.ajax({
+        url: '/cart/inc-item',
+        type: 'GET',
+        data: { id : id },
+        success: function(res){
+            if( !res  ) alert('Ошибка!');
+            showCart(res);
+        },
+        error: function(err){
+            console.warn(err);
+        }
+    });
+}
+function decItem(id){
+    $.ajax({
+        url: '/cart/dec-item',
+        type: 'GET',
+        data: { id : id },
+        success: function(res){
+            if( !res  ) alert('Ошибка!');
+            showCart(res);
+        },
+        error: function(err){
+            console.warn(err);
+        }
+    });
+}
+
 function getCart(){
     $.ajax({
         url: '/cart/show',
