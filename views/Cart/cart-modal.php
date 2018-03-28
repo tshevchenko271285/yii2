@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 <?php if( !empty( $session['cart'] ) ) : ?>
     <section id="cart_items">
-        <div class="container">
+        <!--<div class="container">-->
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
@@ -60,7 +60,7 @@ use yii\helpers\Html;
                     </tbody>
                 </table>
             </div>
-        </div>
+        <!--</div>-->
     </section> <!--/#cart_items-->
 <?php else : ?>
     <h3>Корзина пуста</h3>

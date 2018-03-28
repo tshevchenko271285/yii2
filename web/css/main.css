@@ -2534,3 +2534,13 @@ h2.title {
 }
 
 
+/**
+**  My Custom Styles
+*/
+.modal-dialog {
+  width: 80%;
+}
+#cart_items .cart_info {
+  max-width: 100%;
+  overflow: hidden;
+}

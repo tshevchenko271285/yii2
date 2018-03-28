@@ -34,9 +34,24 @@ $(function(){
 		speed: 300,
 	});
 });
-
+function clearCart(){
+    $.ajax({
+        url: '/cart/clear',
+        type: 'GET',
+        success: function(res){
+            if( !res  ) alert('Ошибка!');
+            showCart(res);
+        },
+        error: function(err){
+            console.warn(err)
+        }
+    });
+}
+function showCart(cart){
+    $('#cart .modal-body').html(cart);
+    $('#cart').modal();
+}
 $(function(){
-
 	$('.add-to-cart').on('click', function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
@@ -46,12 +61,10 @@ $(function(){
 			type: 'GET',
 			success: function(res){
 				if( !res  ) alert('Ошибка!');
-				console.log(res);
-				// showCart();
+				showCart(res);
 			},
 			error: function(err){
 				console.warn(err)
-				// alert('Error!');
 			}
 		});
 	});
