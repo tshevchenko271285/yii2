@@ -32,7 +32,8 @@ use yii\helpers\Html;
                             <tr>
                                 <td class="cart_product">
                                     <a href="<?= Url::to(['product/view', 'id' => $key ])?>">
-                                        <?= Html::img("@web/images/product/{$item['img']}", ['alt' =>  $item['name']]); ?>
+                                        <? $options = ['style' => ['width' => '150px'], 'alt' =>  $item['name'], ]; ?>
+                                        <?= Html::img("@web/images/product/{$item['img']}", $options); ?>
                                     </a>
                                 </td>
                                 <td class="cart_description">
@@ -53,10 +54,20 @@ use yii\helpers\Html;
                                     <p class="cart_total_price">$<?= $item['price'] * $item['qty'] ?></p>
                                 </td>
                                 <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                    <a class="cart_quantity_delete" data-id="<?= $key ?>" href=""><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach;?>
+                        <tr>
+                            <td></td>
+                            <td colspan="3">Итого: </td>
+                            <td><?= $session['cart.qty']?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="3">На сумму: </td>
+                            <td>$<?= $session['cart.sum'] ?></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
