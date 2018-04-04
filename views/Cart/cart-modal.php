@@ -27,7 +27,8 @@ use yii\helpers\Html;
                     </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($session['cart'] as $key => $item) : ?>
+                    <? //debug($session['cart']) ?>
+                        <?php foreach ( $session['cart'] as $key => $item ) : ?>
                         <?php if( !$item['name'] ) continue; ?>
                             <tr>
                                 <td class="cart_product">
