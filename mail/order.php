@@ -1,27 +1,10 @@
-<?
+<?php
+use \yii\helpers\Url;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+
 ?>
 
-<div class="container">
-    <?php if( Yii::$app->session->getFlash('success') ) : ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?= Yii::$app->session->getFlash('success'); ?>
-        </div>
-    <?php endif;?>
-
-    <?php if( Yii::$app->session->getFlash('error') ) : ?>
-        <div class="alert alert-error alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?= Yii::$app->session->getFlash('error'); ?>
-        </div>
-    <?php endif;?>
-
     <section id="cart_items">
-        <div class="col-md-12">
-        <?php if( !empty( $session['cart'] ) ) : ?>
         <!--<div class="container">-->
         <div class="breadcrumbs">
             <ol class="breadcrumb">
@@ -33,7 +16,6 @@ use yii\widgets\ActiveForm;
             <table class="table table-condensed">
                 <thead>
                 <tr class="cart_menu">
-                    <td class="image">Фото</td>
                     <td class="description"></td>
                     <td class="price">Цена</td>
                     <td class="quantity">Количество</td>
@@ -46,12 +28,6 @@ use yii\widgets\ActiveForm;
                 <?php foreach ( $session['cart'] as $key => $item ) : ?>
                     <?php if( !$item['name'] ) continue; ?>
                     <tr>
-                        <td class="cart_product">
-                            <a href="<?= Url::to(['product/view', 'id' => $key])?>">
-                                <? $options = ['style' => ['width' => '150px'], 'alt' =>  $item['name'], ]; ?>
-                                <?= Html::img("@web/images/product/{$item['img']}", $options); ?>
-                            </a>
-                        </td>
                         <td class="cart_description">
                             <h4><a href="<?= Url::to(['product/view', 'id' => $key ])?>"><?= $item['name'] ?></a></h4>
                             <p>Web ID: <?= $key ?></p>
@@ -87,19 +63,5 @@ use yii\widgets\ActiveForm;
                 </tbody>
             </table>
         </div>
-        </div>
-        <hr>
-        <div class="col-md-6">
-            <?php $form = ActiveForm::begin();?>
-                <?= $form->field($order, 'name')?>
-                <?= $form->field($order, 'email')?>
-                <?= $form->field($order, 'phone')?>
-                <?= $form->field($order, 'address')?>
-                <?= Html::submitButton('Заказать', ['class'=>'btn btn-success'])?>
-            <?php ActiveForm::end();?>
-        </div>
-    <?php else : ?>
-    <h3>Корзина пуста</h3>
-    <?php endif;?>
-    </section><!--/#cart_items-->
-</div>
+        <!--</div>-->
+    </section> <!--/#cart_items-->
