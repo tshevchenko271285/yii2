@@ -26,7 +26,7 @@ LtAppAsset::register($this);
     <meta name="description" content="The First Develop on The YII2 on Video Lesson">
     <meta name="author" content="TShevchenko">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>Админка <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
     <link rel="shortcut icon" href="/images/ico/favicon.ico">
@@ -37,8 +37,8 @@ LtAppAsset::register($this);
 </head><!--/head-->
 
 <body>
-    <?php $this->beginBody() ?>
-    <header id="header"><!--header-->
+<?php $this->beginBody() ?>
+<header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
         <div class="container">
             <div class="row">
@@ -103,7 +103,7 @@ LtAppAsset::register($this);
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="<?= Url::to(['/admin'])?>"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -157,9 +157,9 @@ LtAppAsset::register($this);
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
-    <?= $content; ?>
+<?= $content; ?>
 
-    <footer id="footer"><!--Footer-->
+<footer id="footer"><!--Footer-->
     <div class="footer-top">
         <div class="container">
             <div class="row">
@@ -317,19 +317,7 @@ LtAppAsset::register($this);
 
 </footer><!--/Footer-->
 
-    <?php
-    Modal::begin([
-        'header' => '<h2>Корзина</h2>',
-        'id' => 'cart',
-        'size' => 'modal-lg',
-        'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-<a href="' . Url::to(['cart/view']) . '" type="button" class="btn btn-success">Оформить заказ</a>
-<button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>',
-    ]);
-
-    Modal::end();
-    ?>
-    <?php $this->endBody() ?>
+<?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
