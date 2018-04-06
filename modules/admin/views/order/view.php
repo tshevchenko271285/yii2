@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Order */
@@ -12,10 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Просмотр заказа № <?= Html::encode($model->id) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -33,7 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
             'qty',
             'sum',
-            'status',
+           // 'status',
+            [
+                'attribute' => 'status',
+                'value' => !$model->status ? '<span class="text-danger">Активен</span>' : '<span class="text-success">Завершен</span>',
+                'format' => 'html',
+            ],
             'name',
             'email:email',
             'phone',
@@ -41,4 +47,38 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <?php $items = $model->orderItems ?>
+    <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+            <thead>
+            <tr class="cart_menu">
+                <!--<td class="image">Фото</td>-->
+                <td class="description"></td>
+                <td class="price">Цена</td>
+                <td class="quantity">Количество</td>
+                <!--<td class="total">Всего</td>-->
+                <td>Сумма</td>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ( $items as $item ) : ?>
+                <?php if( !$item['name'] ) continue; ?>
+                <tr>
+                    <td class="cart_description">
+                        <h4><a href="<?= Url::to([ '/product/view', 'id' => $item['product_id'] ])?>"><?= $item['name'] ?></a></h4>
+                    </td>
+                    <td class="cart_price">
+                        <p>$<?= $item['price'] ?></p>
+                    </td>
+                    <td class="cart_quantity">
+                        <?= $item['qty_item'] ?>
+                    </td>
+                    <td class="cart_total">
+                        <p class="cart_total_price">$<?= $item['sum_item'] ?></p>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+            </tbody>
+        </table>
+    </div>
 </div>

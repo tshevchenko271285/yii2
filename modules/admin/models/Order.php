@@ -3,6 +3,8 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use app\modules\admin\models\OrderItems;
+
 
 /**
  * This is the model class for table "order".
@@ -26,6 +28,10 @@ class Order extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'order';
+    }
+
+    public function getOrderItems(){
+        return $this->hasMany(OrderItems::class, ['order_id' => 'id']);
     }
 
     /**

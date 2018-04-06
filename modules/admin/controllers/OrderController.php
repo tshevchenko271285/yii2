@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
+use app\modules\admin\models\OrderItems;
 use app\modules\admin\models\Order;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;

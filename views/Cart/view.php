@@ -42,7 +42,6 @@ use yii\widgets\ActiveForm;
                 </tr>
                 </thead>
                 <tbody>
-                <? //debug($session['cart']) ?>
                 <?php foreach ( $session['cart'] as $key => $item ) : ?>
                     <?php if( !$item['name'] ) continue; ?>
                     <tr>
